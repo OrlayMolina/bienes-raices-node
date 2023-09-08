@@ -10,6 +10,9 @@ const app = express();
 app.set('view engine', 'pug') // set agrega config
 app.set('views', './views')
 
+//Carpeta publica
+app.use( express.static('public'));
+
 
 app.use('/auth', usuarioRoutes); //usuarioRoutes es la funcion no es necesario agregar ().
 
