@@ -10,7 +10,7 @@ const app = express();
 app.set('view engine', 'pug') // set agrega config
 app.set('views', './views')
 
-//Carpeta publica
+//Carpeta Pública
 app.use( express.static('public'));
 
 
