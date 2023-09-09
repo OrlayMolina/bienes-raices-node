@@ -1,5 +1,5 @@
 import express from 'express';
-import { formularioLogin, formularioRegistro, registrar, formularioOlvidePasword } from '../controllers/usuarioController.js';
+import { formularioLogin, formularioRegistro, registrar, confirmar, formularioOlvidePasword } from '../controllers/usuarioController.js';
 
 const router = express.Router();
 
@@ -8,6 +8,9 @@ router.get('/login', formularioLogin);
 
 router.get('/registro', formularioRegistro);
 router.post('/registro', registrar);
+
+// con la varialbe token leeremos el token del usuario
+router.get('/confirmar:token', confirmar);
 
 router.get('/olvide-password', formularioOlvidePasword);
 
