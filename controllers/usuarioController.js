@@ -19,7 +19,7 @@ const registrar = async (req, res) => {
     await check('nombre').notEmpty().withMessage('El nombre es obligatorio').run(req)
     await check('email').isEmail().withMessage('El correo es invalido').run(req)
     await check('password').isLength({ min: 6 }).withMessage('El password es incorrecto, debe contener más de 6 caracteres').run(req);
-    await check('repetir_password').equals(req.body.password).withMessage('La contraseña no es la misma').run(req);
+    await check('repetir_password').equals('password').withMessage('La contraseña no es la misma').run(req);
 
     let resultado = validationResult(req)
 
@@ -56,8 +56,6 @@ const registrar = async (req, res) => {
     console.log(existeUsuario)
 
     return;
-
-    const usuario = await Usuario.create(req.body)
 
 }
 
