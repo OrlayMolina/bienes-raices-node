@@ -2,9 +2,21 @@
 
 import express from 'express'; //ECMAScript6 forma de importar dependencia de forma nativa a Javascript
 import usuarioRoutes from './routes/usuarioRoutes.js'; //archivos creados requiere la extension .js
+import db from './config/db.js';
 
 //crear app
 const app = express();
+
+//Conexión a la base de datos
+try {
+
+    await db.authenticate();
+    console.log('Conexión correcta a la base de datos.')
+
+}catch (error) {
+
+    console.log('Error '.error)
+}
 
 //Habilitar Pug
 app.set('view engine', 'pug') // set agrega config
