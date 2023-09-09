@@ -10,7 +10,14 @@ const formularioRegistro = (req, res) => {
     });
 }
 
+const formularioOlvidePasword = (req, res) => {
+    res.render('auth/olvide-password', {
+        pagina: 'Recuperar Cuenta',
+    });
+}
+
 export {
     formularioLogin,
-    formularioRegistro
+    formularioRegistro,
+    formularioOlvidePasword
 }
