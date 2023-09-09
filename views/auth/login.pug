@@ -1,5 +1,20 @@
 extends ../layout/index
 
 block contenido
-    div
-        h2.text-center.text-2xl.font-extrabold Inicia Sesión
+    .py-5
+        h1.text-4xl.my-10.font-extrabold.text-center.font-sans Bienes
+            span.font-normal Raices
+        h2.text-center.text-2xl.font-extrabold= pagina
+
+        .mt-8.mx-auto.max-w-md
+            .bg-white.rounded-xl.py-8.px-4.shadow-xl
+                form.space-y-5
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="email") Tu Email de Registro
+                        input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Email ..." type="email" name="email")
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="password") Tu Password
+                        input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Password ..." type="password" name="password")
+
+
+                    input(class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xl py-2 rounded-xl" type="submit" value="Inicia Sesión")
