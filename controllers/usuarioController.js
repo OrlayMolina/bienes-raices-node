@@ -135,6 +135,22 @@ const resetPassword = async (req, res) => {
             errores: resultado.array()
         });
     }
+
+    //Buscar el usuario
+
+    const { email } = req.body
+
+    const usuario = await Usuario.findOne( { where : { email } } )
+
+    if(!usuario){
+        return res.render('auth/olvide-password', {
+            pagina: 'Recupera el acceso a Bienes Raices',
+            csrfToken: req.csrfToken(),
+            errores: [{ msg: 'El email no pertenece a ningún usuario'}]
+        });
+    }
+
+    // Generar un token y enviar email
 }
 
 export {
