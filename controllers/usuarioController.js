@@ -162,20 +162,33 @@ const resetPassword = async (req, res) => {
     })
 
 
-    // renderizar un mensaje al usuario para que revise la bandeja
+    // Renderizar un mensaje al usuario para que revise la bandeja
     res.render('templates/mensaje', {
         pagina: 'Reestablece tu Password',
         mensaje: 'Hemos Enviado un Email con la instrucciones'
     })
 }
 
-const comprobarToken = (req, res, next) => {
+const comprobarToken = async (req, res) => {
 
-    next();
+    const { token } = req.params;
+
+    const usuario = await Usuario.findOne({ where : { token } } )
+
+    if(!usuario){
+        return res.render('auth/confirmar-cuenta', {
+            pagina: 'Reestablece tu Password',
+            mensaje: 'Hubo un error al validar tu información, intenta de nuevo',
+            error: true       
+        })
+    }
+
 }
 
+
+
 const nuevoPassword = (req, res) => {
-    
+    console.log('Guardando password...')
 }
 
 export {
