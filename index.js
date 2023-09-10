@@ -1,14 +1,23 @@
 //const express = require('express'); //CommonJS
 
 import express from 'express'; //ECMAScript6 forma de importar dependencia de forma nativa a Javascript
+import csurf from 'csurf';
+import cookieParser from 'cookie-parser'
 import usuarioRoutes from './routes/usuarioRoutes.js'; //archivos creados requiere la extension .js
 import db from './config/db.js';
 
 //crear app
 const app = express();
 
+
 // Habilitar lectura de datos de formulario 
 app.use( express.urlencoded({extended: true}))
+
+//Habilitar cookie parser
+app.use(cookieParser())
+
+//Habilitar CSFR
+app.use( csurf({ cookie : true }))
 
 //Conexión a la base de datos
 try {
