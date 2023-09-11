@@ -57,9 +57,19 @@ block contenido
                                 option(value="") - Seleccione -
                                 - var n = 1;
                                     while n < 4
+                          
                                         option(value=n) #{n++}
+                    div.border-gray-200.border-t.py-5.space-y-4
+                        h3.text-xl.leading-6.font-medium.text-gray-900 Ubicación
+                        p.text-gray-600 Ubica la propiedad en el mapa
+                        #mapa.h-96.rounded-xl.shadow-lg
 
-                    #mapa.h-96.rounded-xl.shadow-lg
+                        div
+                            p.calle
+
+                        input(type="hidden" name="calle" id="calle")
+                        input(type="hidden" name="lat" id="lat")
+                        input(type="hidden" name="lng" id="lng")
 
 
 block scripts
