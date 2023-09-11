@@ -1,10 +1,11 @@
 import express from 'express';
-import { formularioLogin, formularioRegistro, registrar, confirmar, formularioOlvidePasword, resetPassword, comprobarToken, nuevoPassword } from '../controllers/usuarioController.js';
+import { formularioLogin, autenticar, formularioRegistro, registrar, confirmar, formularioOlvidePasword, resetPassword, comprobarToken, nuevoPassword } from '../controllers/usuarioController.js';
 
 const router = express.Router();
 
 //Routing res.render sirve para imprimir una vista con un template engine
 router.get('/login', formularioLogin);
+router.post('/login', autenticar);
 
 router.get('/registro', formularioRegistro);
 router.post('/registro', registrar);

@@ -7,7 +7,54 @@ import { emaillRegistro, emailOlvidePassword } from '../helpers/emails.js'
 const formularioLogin = (req, res) => {
     res.render('auth/login', {
         pagina: 'Iniciar Sesión',
+        csrfToken: req.csrfToken()
     });
+}
+
+const autenticar = async (req, res) => {
+    //Validacion
+    await check('email').isEmail().withMessage('El correo es obligatorio').run(req)
+    await check('password').notEmpty().withMessage('El password es obligatorio').run(req);
+
+    let resultado = validationResult(req)
+
+
+    // Verificar que el resultado este vacío.
+    if(!resultado.isEmpty()){
+        // Hay errores
+        return res.render('auth/login', {
+            pagina: 'Iniciar Sesión',
+            csrfToken: req.csrfToken(),
+            errores: resultado.array()
+            
+        });
+    }
+
+    const { email, password } = req.body
+
+    //Comprobar si el susuario existe
+
+    const usuario = await Usuario.findOne({ where : { email } } )
+    if(!usuario){
+        return res.render('auth/login', {
+            pagina: 'Iniciar Sesión',
+            csrfToken: req.csrfToken(),
+            errores: [ { msg: 'El usuario no existe' } ]
+            
+        });
+    }
+
+    //Comprobar si el usuario esta confirmado
+    if(!usuario.confirmado){
+        return res.render('auth/login', {
+            pagina: 'Iniciar Sesión',
+            csrfToken: req.csrfToken(),
+            errores: [ { msg: 'Tu cuenta no esta confirmada' } ]
+            
+        });
+    }
+
+    //Revisar el password
 }
 
 const formularioRegistro = (req, res) => {
@@ -233,6 +280,7 @@ const nuevoPassword = async (req, res) => {
 
 export {
     formularioLogin,
+    autenticar,
     formularioRegistro,
     registrar,
     confirmar,
