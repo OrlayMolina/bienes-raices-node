@@ -1,6 +1,5 @@
 import { validationResult } from 'express-validator'
-import Categoria from '../models/Categoria.js'
-import Precio from '../models/Precio.js'
+import { Precio, Categoria, Usuario } from '../models/index.js'
 
 const admin = (req, res) => {
     res.render('propiedades/admin', {
@@ -23,7 +22,8 @@ const crear = async (req, res) => {
         barra: true,
         csrfToken: req.csrfToken(),
         categorias,
-        precios
+        precios,
+        datos: {}
     })
 }
 
@@ -44,12 +44,36 @@ const guardar = async (req, res) => {
         return res.render('propiedades/crear', {
             pagina: 'Crear Propiedad',
             barra: true,
+            csrfToken: req.csrfToken(),
             categorias,
             precios,
-            errores: resultado.array()
+            errores: resultado.array(),
+            datos: req.body
             
         })
 
+    }
+
+    //Crear un registro
+    try {
+
+        const { titulo, descripcion, habitaciones, estacionamiento, wc, calle, lat, lng, precio: precioId, categoria: categoriaId } = req.body
+
+        const propiedadGuardada = await Propiedad.create({
+            titulo, 
+            descripcion, 
+            habitaciones, 
+            estacionamiento, 
+            wc, 
+            calle, 
+            lat, 
+            lng,
+            precioId,
+            categoriaId
+        })
+
+    }catch(error){
+        console.log(error)
     }
 }
 
