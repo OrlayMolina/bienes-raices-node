@@ -4,6 +4,7 @@ import express from 'express'; //ECMAScript6 forma de importar dependencia de fo
 import csurf from 'csurf';
 import cookieParser from 'cookie-parser'
 import usuarioRoutes from './routes/usuarioRoutes.js'; //archivos creados requiere la extension .js
+import propiedadesRoutes from './routes/propiedadesRoutes.js'; //archivos creados requiere la extension .js
 import db from './config/db.js';
 
 //crear app
@@ -40,6 +41,7 @@ app.use( express.static('public'));
 
 
 app.use('/auth', usuarioRoutes); //usuarioRoutes es la funcion no es necesario agregar ().
+app.use('/', propiedadesRoutes); //usuarioRoutes es la funcion no es necesario agregar ().
 
 
 //Definir un puerto y arrancar el proyecto
