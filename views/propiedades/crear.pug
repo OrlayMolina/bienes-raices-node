@@ -1,5 +1,8 @@
 extends ../layout/index
 
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
 block contenido
     .py-5
         h1.text-4xl.my-10.font-extrabold.text-center.font-sans Bienes
@@ -55,6 +58,8 @@ block contenido
                                 - var n = 1;
                                     while n < 4
                                         option(value=n) #{n++}
+
+                    #mapa.h-96.rounded-xl.shadow-lg
 
 
 block scripts
