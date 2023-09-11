@@ -8,7 +8,7 @@ block contenido
 
     div( class="bg-white shadow-xl py-8 px-4 rounded-xl max-w-md mx-auto")
 
-        p( class= error ? 'bg-red-600' : 'bg-green-500').py-2.px-5.rounded-xl-w-full.font-bold.text-center.text-white.uppercase= mensaje
+        p( class= error ? 'bg-red-500 rounded-xl' : 'bg-indigo-500 rounded-xl').py-2.px-5.rounded-xl-w-full.font-bold.text-center.text-white.uppercase= mensaje
 
         if !error
             a(href="/auth/login" class="text-center font-bold text-sm text-slate-600 uppercase mt-10 block") Ya puedes Iniciar Sesión

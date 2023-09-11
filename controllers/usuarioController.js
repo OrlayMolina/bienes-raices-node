@@ -207,7 +207,7 @@ const nuevoPassword = async (req, res) => {
         return res.render('auth/reset-password', {
             pagina: 'Reestablece tu password',
             csrfToken: req.csrfToken(),
-            errores: resultado.array(),
+            errores: resultado.array()
         });
     }
 
@@ -225,7 +225,7 @@ const nuevoPassword = async (req, res) => {
 
     await usuario.save();
 
-    res.render('auth/consfirmar-cuenta', {
+    res.render('auth/confirmar-cuenta', {
         pagina: 'Password reestablecido',
         mensaje: 'El password se reestableció correctamente'
     })
