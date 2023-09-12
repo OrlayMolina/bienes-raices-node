@@ -16,6 +16,12 @@ const protegerRuta = async (req, res, next) => {
         const usuario = await Usuario.scope('eliminarPassword').findByPk(decoded.id)
 
         //Almacenar el usuario al REQ
+        if(usuario){
+            req.usuario = usuario
+        }else {
+            return res.redirect('/auth/login')
+        }
+        return next();
 
     }catch(error){
         return res.clearCookie('_token').redirect('/auth/login')
