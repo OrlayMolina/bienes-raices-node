@@ -1,6 +1,8 @@
 extends ../layout/admin
 
 block styles
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css")
+    meta(name="csrf-token" content= csrfToken)
 
 block contenido
     .py-5
@@ -8,17 +10,13 @@ block contenido
             span.font-normal Raices
         h2.text-center.text-2xl.font-extrabold= pagina
 
-        if errores
-            div(class="max-w-md mx-auto my-10")
-                each error in errores
-                    p.bg-red-600.text-white.uppercase.rounded-xl.text-sm.text-center.p-2.mb-1.font-bold= error.msg
-
         div(class="bg-white shadow-lg py-8 px-4 rounded-xl  mx-auto max-w-4xl my-10 md:px-10")
 
-            form.space-y-8(method="POST" action="/propiedades/crear")
+            form.space-y-8(id="imagen" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded-xl flex-col justify-center items-center " method="POST" action=`/propiedades/agregar-imagen/${propiedad.id}`)
                 input(type="hidden" name="_csrf" value= csrfToken)
 
-                input(class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 shadow-lg rounded-xl text-white font-bold uppercase cursor-pointer" type="submit" value="Publicar Propiedad")
+            input(class="mt-6 w-full py-3 bg-indigo-600 hover:bg-indigo-700 shadow-lg rounded-xl text-white font-bold uppercase cursor-pointer" type="submit" value="Publicar Propiedad")
 
 
 block scripts
+    script(src="/js/agregarImagen.js")
