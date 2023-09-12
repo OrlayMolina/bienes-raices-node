@@ -3,7 +3,7 @@ const categorias = [
         nombre: 'Casa'
     },
     {
-        nombre: 'Departamento'
+        nombre: 'Apartamento'
     },
     {
         nombre: 'Bodega'

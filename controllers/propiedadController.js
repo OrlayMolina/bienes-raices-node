@@ -1,10 +1,9 @@
 import { validationResult } from 'express-validator'
-import { Precio, Categoria, Usuario } from '../models/index.js'
+import { Precio, Categoria, Usuario, Propiedad } from '../models/index.js'
 
 const admin = (req, res) => {
     res.render('propiedades/admin', {
-        pagina: 'Mis Propiedades',
-        barra: true
+        pagina: 'Mis Propiedades'
     })
 }
 
@@ -19,7 +18,6 @@ const crear = async (req, res) => {
 
     res.render('propiedades/crear', {
         pagina: 'Crear Propiedad',
-        barra: true,
         csrfToken: req.csrfToken(),
         categorias,
         precios,
@@ -43,7 +41,6 @@ const guardar = async (req, res) => {
 
         return res.render('propiedades/crear', {
             pagina: 'Crear Propiedad',
-            barra: true,
             csrfToken: req.csrfToken(),
             categorias,
             precios,
@@ -86,8 +83,16 @@ const guardar = async (req, res) => {
     }
 }
 
+const agregarImagen = async (req, res) => {
+    
+    res.render('propiedades/agregar-imagen', {
+
+    })
+}
+
 export {
     admin,
     crear,
-    guardar
+    guardar,
+    agregarImagen
 }
