@@ -9,7 +9,7 @@ const admin = async (req, res) => {
     const { pagina: paginaActual } = req.query
     
     //Expresión regular
-    const expression = /^[0-9]$/ // Valida que solo sea numeros
+    const expression = /^[1-9]$/ // Valida que solo sea numeros
 
     if(!expression.test(paginaActual)){
         return res.redirect('/mis-propiedades?pagina=1')
@@ -46,7 +46,10 @@ const admin = async (req, res) => {
             propiedades,
             csrfToken: req.csrfToken(),
             paginas: Math.ceil(total / limit),
-            paginaActual
+            paginaActual: Number(paginaActual),
+            total,
+            offset,
+            limit
         })
     }catch(error){
         console.log(error)
