@@ -4,6 +4,17 @@ import { Precio, Categoria, Propiedad } from '../models/index.js'
 
 const admin = async (req, res) => {
 
+    // Leer QueryString
+
+    const { pagina: paginaActual } = req.query
+    
+    //Expresión regular
+    const expression = /^[0-9]$/ // Valida que solo sea numeros
+
+    if(!expression.test(paginaActual)){
+        return res.redirect('/mis-propiedades?pagina=1')
+    }
+
     const { id } = req.usuario;
 
     const propiedades = await Propiedad.findAll({
