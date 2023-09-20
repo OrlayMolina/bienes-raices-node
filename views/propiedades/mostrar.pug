@@ -1,11 +1,14 @@
 extends ../layout/app
 
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
 block contenido 
 
    //-- pre= JSON.stringify(propiedad, undefined, 2)
 
    div(class="py-5")
-      h1(class="text-4xl my-8 font-extrabold text-center")= propiedad.titulo
+      h1(id="titulo" class="text-4xl my-8 font-extrabold text-center")= propiedad.titulo
 
       div
          a(href="#" class="font-bold text-gray-600 text-md") Categoria: 
@@ -42,4 +45,8 @@ block contenido
 
             div(class="p-5")
                p(class="text-gray-600 font-bold text-md") Dirección
-                  span(class="tect-gray-800 block text-lg")= propiedad.calle
+                  span(id="calle" class="tect-gray-800 block text-lg")= propiedad.calle
+
+block scripts
+    script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+    script(src="/js/mostrarMapa.js")
