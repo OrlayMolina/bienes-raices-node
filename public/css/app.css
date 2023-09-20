@@ -530,6 +530,10 @@ video {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -547,6 +551,9 @@ video {
 }
 .mt-8 {
   margin-top: 2rem;
+}
+.mt-5 {
+  margin-top: 1.25rem;
 }
 .block {
   display: block;
@@ -963,6 +970,10 @@ video {
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-2\/3 {
+    width: 66.666667%;
   }
 
   .md\:items-center {
