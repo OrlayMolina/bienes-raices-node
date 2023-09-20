@@ -40,5 +40,11 @@ block contenido
                                         input(type="hidden" name="_csrf" value= csrfToken)
                                         input(type="submit" class="w-full text-center px-2 py-2 md:py-1 text-sm leading-5 font-semibold rounded-xl shadow-lg cursor-pointer bg-red-200 text-red-800 border-solid border-2 border-red-600" value="Eliminar") 
 
+                div(class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6")
+                    div 
+                        nav(class="relative z-0 inline-flex rounded-md shadow-md")
+                            - var n = 1;
+                                while n <= paginas
+                                    a(href=`/mis-propiedades?pagina=${n}` class=`${paginaActual == n ? 'bg-indigo-50 border-indogo-500 text-indigo-600' : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'} relative inline-flex items-center px-4 py-2 border text-md font-medium`) #{n++}
         else 
             p.text-center No hay propiedades
