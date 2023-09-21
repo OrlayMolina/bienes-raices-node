@@ -588,14 +588,11 @@ video {
 .h-96 {
   height: 24rem;
 }
-.h-auto {
-  height: auto;
-}
-.h-\[\] {
-  height: ;
-}
 .h-\[600px\] {
   height: 600px;
+}
+.h-auto {
+  height: auto;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -681,9 +678,6 @@ video {
 }
 .rounded-xl {
   border-radius: 0.75rem;
-}
-.rounded {
-  border-radius: 0.25rem;
 }
 .border {
   border-width: 1px;
