@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import usuarioRoutes from './routes/usuarioRoutes.js'; //archivos creados requiere la extension .js
 import propiedadesRoutes from './routes/propiedadesRoutes.js'; //archivos creados requiere la extension .js
 import appRoutes from './routes/appRoutes.js'
+import apiRoutes from './routes/apiRoutes.js'
 import db from './config/db.js';
 
 //crear app
@@ -44,6 +45,7 @@ app.use( express.static('public'));
 app.use('/', appRoutes)
 app.use('/auth', usuarioRoutes); //usuarioRoutes es la funcion no es necesario agregar ().
 app.use('/', propiedadesRoutes); //usuarioRoutes es la funcion no es necesario agregar ().
+app.use('/api', apiRoutes)
 
 
 //Definir un puerto y arrancar el proyecto
