@@ -32,8 +32,13 @@
             })
             .addTo(mapa)
             .bindPopup(`
-                <h1 class="text-xl font-extrabold uppercase my-5">${propiedad?.titulo}</h1>
-                <img src="/uploads/${propiedad?.imagen}" alt="Imagen de la propiedad: ${propiedad?.titulo}" class="rounded-xl">`)
+                <p class="text-indigo-600 font-bold">${propiedad.categoria.nombre}</p>
+                <h1 class="text-xl font-extrabold uppercase my-3">${propiedad?.titulo}</h1>
+                <img src="/uploads/${propiedad?.imagen}" alt="Imagen de la propiedad: ${propiedad?.titulo}" class="rounded-xl">
+                <p class="text-gray-600 font-bold">${propiedad.precio.nombre}</p>
+                <a href="/propiedad/${propiedad.id}" class="bg-indigo-600 rounded-xl block p-2 text-center font-bold uppercase">Ver Propiedad</a>
+                
+            `)
         })
     }
 
