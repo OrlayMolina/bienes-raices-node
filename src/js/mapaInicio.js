@@ -6,6 +6,7 @@
 
     let markers = new L.FeatureGroup().addTo(mapa)
 
+    let propiedades = [];
 
     // Filtros
     const filtros = {
@@ -20,10 +21,12 @@
 
     categoriasSelect.addEventListener('change', e => {
         filtros.categoria = +e.target.value //con el más se modifica de string a numero
+        filtrarPropiedades()
     })
 
     preciosSelect.addEventListener('change', e => {
         filtros.precio = +e.target.value //con el más se modifica de string a numero
+        filtrarPropiedades()
     })
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -34,16 +37,20 @@
         try {
             const url = '/api/propiedades'
             const respuesta = await fetch(url)
-            const propiedades = await respuesta.json()
+            propiedades = await respuesta.json()
 
-            mostrarPropiedad(propiedades)
+            mostrarPropiedades(propiedades)
 
         }catch(error){
             console.log(error)
         }
     }
 
-    const mostrarPropiedad = propiedades => {
+    const mostrarPropiedades = propiedades => {
+
+        // Limpiar los markers previos
+
+        markers.clearLayers()
         
         propiedades.forEach(propiedad => {
             //Agregar los pines
@@ -59,8 +66,19 @@
                 <a href="/propiedad/${propiedad.id}" class="bg-indigo-600 rounded-xl block p-2 text-center font-bold uppercase">Ver Propiedad</a>
                 
             `)
+
+            markers.addLayer(marker)
         })
     }
+
+    const filtrarPropiedades = () => {
+        const resultado = propiedades.filter( filtrarCategoria ).filter( filtrarPrecio )
+        mostrarPropiedades(resultado)
+    }
+
+    const filtrarCategoria = propiedad => filtros.categoria ? propiedad.categoriaId === filtros.categoria : propiedad
+    const filtrarPrecio = propiedad => filtros.precio ? propiedad.precioId === filtros.precio : propiedad
+    
 
     obtenerPropiedades();
 })()
