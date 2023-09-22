@@ -26,6 +26,25 @@ block contenido
 
         div(id="mapa-inicio" class="h-[600px] mt-3 rounded-xl")
 
+
+        section(class="py-5")
+            h2(class="text-center text-4xl font-extrabold pt-10") Casas  en Venta
+
+            //--pre= JSON.stringify(apartamentos, undefined, 2)
+
+            div(class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10")
+                each propiedad in casas 
+                    include ./templates/card
+        
+        section(class="py-5")
+            h2(class="text-center text-4xl font-extrabold pt-10") Apartamentos en Venta
+
+            //--pre= JSON.stringify(apartamentos, undefined, 2)
+
+            div(class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10")
+                each propiedad in apartamentos 
+                    include ./templates/card
+
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
     script(src="/js/mapaInicio.js")
