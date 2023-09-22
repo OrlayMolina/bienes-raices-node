@@ -6,6 +6,26 @@
 
     let markers = new L.FeatureGroup().addTo(mapa)
 
+
+    // Filtros
+    const filtros = {
+        categoria: '',
+        precio: ''
+    }
+    
+    const categoriasSelect = document.querySelector('#categorias');
+    const preciosSelect = document.querySelector('#precios');
+
+    //Filtrado de categorias y precios
+
+    categoriasSelect.addEventListener('change', e => {
+        filtros.categoria = +e.target.value //con el más se modifica de string a numero
+    })
+
+    preciosSelect.addEventListener('change', e => {
+        filtros.precio = +e.target.value //con el más se modifica de string a numero
+    })
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapa);
