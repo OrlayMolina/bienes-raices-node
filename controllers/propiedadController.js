@@ -1,6 +1,6 @@
 import { unlink } from 'node:fs/promises'
 import { validationResult } from 'express-validator'
-import { Precio, Categoria, Propiedad } from '../models/index.js'
+import { Precio, Categoria, Propiedad, Mensaje } from '../models/index.js'
 import { esVendedor } from '../helpers/index.js'
 
 const admin = async (req, res) => {
@@ -32,7 +32,8 @@ const admin = async (req, res) => {
                 },
                 include: [
                     { model: Categoria, as: 'categoria'},
-                    { model: Precio, as: 'precio'}
+                    { model: Precio, as: 'precio'},
+                    { model: Mensaje, as: 'mensajes'}
                 ]
             }), 
             Propiedad.count({
@@ -383,15 +384,36 @@ const enviarMensaje  = async (req, res) => {
 
     }
 
-    // Almacenar mensaje
+    //console.log(req.body) // viene de lo que el usuario ingrese al formulario 172
+    //console.log(req.params) // viene del la url
+    //console.log(req.usuario) // usuario es una instancia local
 
-    res.render('propiedades/mostrar', {
-        propiedad,
-        pagina: propiedad.titulo,
-        csrfToken: req.csrfToken(),
-        usuario: req.usuario,
-        esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioId) 
+    const { mensaje } = req.body
+    const { id: propiedadId } = req.params
+    const { id: usuarioId } = req.usuario
+
+    // Almacenar mensaje
+    await Mensaje.create({
+        mensaje,
+        propiedadId,
+        usuarioId
     })
+
+    res.redirect('/')
+
+    // res.render('propiedades/mostrar', {
+    //     propiedad,
+    //     pagina: propiedad.titulo,
+    //     csrfToken: req.csrfToken(),
+    //     usuario: req.usuario,
+    //     esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioId),
+    //     enviado: true 
+    // })
+}
+
+// Leer Mensajes recibidos
+const verMensajes = async (req, res) => {
+    res.send('Mensajes aquí')
 }
 
 export {
@@ -404,5 +426,6 @@ export {
     guardarCambios,
     eliminar, 
     mostrarPropiedad, 
-    enviarMensaje
+    enviarMensaje, 
+    verMensajes
 }
