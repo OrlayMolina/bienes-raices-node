@@ -1,11 +1,14 @@
 import express from 'express';
-import { formularioLogin, autenticar, formularioRegistro, registrar, confirmar, formularioOlvidePasword, resetPassword, comprobarToken, nuevoPassword } from '../controllers/usuarioController.js';
+import { formularioLogin, autenticar, cerrarSesion, formularioRegistro, registrar, confirmar, formularioOlvidePasword, resetPassword, comprobarToken, nuevoPassword } from '../controllers/usuarioController.js';
 
 const router = express.Router();
 
-//Routing res.render sirve para imprimir una vista con un template engine
+// Routing res.render sirve para imprimir una vista con un template engine
 router.get('/login', formularioLogin);
 router.post('/login', autenticar);
+
+// Cerrar Sesión
+router.post('/cerrar-sesion', cerrarSesion);
 
 router.get('/registro', formularioRegistro);
 router.post('/registro', registrar);
