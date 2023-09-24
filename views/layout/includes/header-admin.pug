@@ -4,9 +4,10 @@ header.bg-indigo-500.p-3.shadow-lg
             h1.text-3xl.text-white.font-extrabold.text-center Bienes
                 span.font-normal Raices
 
+
         nav(class="my-5 text-lg md:flex md:items-center font-bold md:gap-6 text-white")
-            a(href="/mis-propiedades") Mis Propiedades 
-            a(href="") Mi Perfil 
+            a(href="/mis-propiedades" class="hidden md:block") Mis Propiedades 
+            a(href="" class="hidden md:block") Mi Perfil 
 
             form(action="/auth/cerrar-sesion" method="POST")
                 input(type="hidden" name="_csrf" value= csrfToken)
